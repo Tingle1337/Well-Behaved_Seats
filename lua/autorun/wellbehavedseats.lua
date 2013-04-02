@@ -1,5 +1,3 @@
-//
-
 if( CLIENT ) then
 
 end
