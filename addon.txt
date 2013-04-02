@@ -1,0 +1,6 @@
+"AddonInfo"
+{
+	"name"				"Well-behaved Seats"
+	"author_name"		"Tingle"
+	"info"				""
+}
