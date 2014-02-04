@@ -5,7 +5,7 @@ end
 if( SERVER ) then
 	local aLastDirectionPressed = {}
 	function KeyPressedHook( pl, key )
-		if( key == IN_BACK || key == IN_MOVERIGHT || key == IN_MOVELEFT || key == IN_FORWARD ) then
+		if( key == IN_BACK or key == IN_MOVERIGHT or key == IN_MOVELEFT or key == IN_FORWARD ) then
 			aLastDirectionPressed[pl] = key	
 		end
 	end 
@@ -29,11 +29,11 @@ if( SERVER ) then
 	end
 
 	local function VehicleExit(pl, vehicle)
-		if( vehicle:GetClass() != "prop_vehicle_prisoner_pod" ) then return end
+		if( vehicle:GetClass() ~= "prop_vehicle_prisoner_pod" ) then return end
 		
 		local es = constraint.GetAllConstrainedEntities( vehicle )
 		local bExternal = false
-		if( es && GravHull ) then
+		if( es and GravHull ) then
 			for i, c in pairs( es ) do
 				if( IsValid( c ) ) then
 					for ent, data in pairs( GravHull.SHIPS ) do
@@ -54,7 +54,7 @@ if( SERVER ) then
 				end
 			end
 		end
-		if( !bExternal ) then
+		if( not bExternal ) then
 			SetControlledPosOnExit( pl, vehicle )
 			
 			if( GravHull ) then	
@@ -73,8 +73,8 @@ if( SERVER ) then
 	hook.Add("PlayerLeaveVehicle", "VehicleExit", VehicleExit)
 	
 	local function VehicleEntered( pl, vehicle )
-		if( vehicle:GetClass() != "prop_vehicle_prisoner_pod" ) then return end
-		if( !vehicle.InShip ) then
+		if( vehicle:GetClass() ~= "prop_vehicle_prisoner_pod" ) then return end
+		if( not vehicle.InShip ) then
 			pl:SetEyeAngles( Angle(0,90,0) )
 		end
 	end	
